@@ -2,7 +2,7 @@ apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
   name: landing-page
-  namespace: production
+  namespace: staging
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
@@ -21,7 +21,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: landing-page
-  namespace: production
+  namespace: staging
 spec:
   selector:
     app: landing-page
@@ -36,7 +36,7 @@ metadata:
   name: landing-page
   labels:
     app: landing-page
-  namespace: production
+  namespace: staging
 spec:
   replicas: 3
   selector:
@@ -61,7 +61,7 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  namespace: production
+  namespace: staging
   name: landing-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
