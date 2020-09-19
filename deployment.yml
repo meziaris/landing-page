@@ -49,7 +49,7 @@ spec:
     spec:
       containers:
       - name: landing-page
-        image: meziaris/landing-page:latest
+        image: meziaris/landing-page:buildnumber
         ports:
         - containerPort: 80
         resources:
