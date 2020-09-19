@@ -68,7 +68,7 @@ metadata:
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
 spec:
   rules:
-  - host: landing.mezi.space
+  - host: s-landing.mezi.space
     http:
       paths:
       #- path: /
