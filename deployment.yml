@@ -1,27 +1,25 @@
-apiVersion: autoscaling/v2beta1
-kind: HorizontalPodAutoscaler
-metadata:
-  name: landing-page
-  namespace: production
-spec:
-  scaleTargetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: landing-page
-  minReplicas: 2
-  maxReplicas: 20
-  metrics:
-  - type: Resource
-    resource:
-      name: cpu
-      targetAverageUtilization: 80
+# apiVersion: autoscaling/v2beta1
+# kind: HorizontalPodAutoscaler
+# metadata:
+#   name: landing-page
+# spec:
+#   scaleTargetRef:
+#     apiVersion: apps/v1
+#     kind: Deployment
+#     name: landing-page
+#   minReplicas: 2
+#   maxReplicas: 20
+#   metrics:
+#   - type: Resource
+#     resource:
+#       name: cpu
+#       targetAverageUtilization: 80
 ---
 apiVersion: apps/v1
 kind: Service
 apiVersion: v1
 metadata:
   name: landing-page
-  namespace: production
 spec:
   selector:
     app: landing-page
@@ -36,7 +34,6 @@ metadata:
   name: landing-page
   labels:
     app: landing-page
-  namespace: production
 spec:
   replicas: 3
   selector:
@@ -57,21 +54,20 @@ spec:
             cpu: 500m
           requests:
             cpu: 200m
----
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  namespace: production
-  name: landing-ingress
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
-    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-spec:
-  rules:
-  - host: landing.mezi.space
-    http:
-      paths:
-      #- path: /
-      - backend:
-          serviceName: landing-page
-          servicePort: 80
+# ---
+# apiVersion: extensions/v1beta1
+# kind: Ingress
+# metadata:
+#   name: landing-ingress
+#   annotations:
+#     nginx.ingress.kubernetes.io/rewrite-target: /
+#     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+# spec:
+#   rules:
+#   - host: landing.mezi.space
+#     http:
+#       paths:
+#       #- path: /
+#       - backend:
+#           serviceName: landing-page
+#           servicePort: 80
