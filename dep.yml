@@ -31,7 +31,7 @@ spec:
     spec:
       containers:
       - name: landing-page
-        image: meziaris/landing-page:latest
+        image: reg.ngilmu.id/library/landing-page:latest
         ports:
         - containerPort: 80
         resources:
